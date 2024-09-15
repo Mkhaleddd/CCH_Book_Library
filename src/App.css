@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    background-color:rgb(226, 232, 240);
+    scrollbar-width: none;
+   
+}
+
+/* Hides scrollbar for most modern browsers */
+#carousel {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    -ms-overflow-style: none; /* Hides scrollbar in older IE and Edge */
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+  }
+  
+  /* Hide scrollbar for WebKit browsers */
+  #carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+  
