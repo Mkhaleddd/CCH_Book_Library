@@ -19,7 +19,7 @@ const BookCarousel: FC<BookCarouselProps> = ({ books, dispatch, isFavorite, setI
         className="  flex overflow-x-auto snap-x snap-mandatory gap-6 py-4 whitespace-nowrap"
         style={{ scrollBehavior: 'smooth' }}
       >
-        {books.length > 0 ? (
+        {books.length > 0  ? (
           books.map(book => (
             <BookCard
               key={book.id}

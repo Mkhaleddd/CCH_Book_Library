@@ -35,9 +35,11 @@ function App() {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${debounceVal || ''}&key=AIzaSyBlT_QAwciubHx95pGC3P55SwSxfntYI_s&maxResults=15`);
+      const API_KEY = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
+      const { data } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${debounceVal || ''}&key=${API_KEY}&maxResults=15`);
       const fetchedBooks: Book[] = data.items || [];
       dispatch({ type: 'ADD_BOOKS', payload: fetchedBooks });
+      console.log(data)
     } catch (error) {
       console.error('Error fetching books:', error);
     }

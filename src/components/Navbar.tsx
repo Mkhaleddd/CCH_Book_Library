@@ -28,7 +28,6 @@ const Navbar: React.FC<NavbarProps> = ({
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      console.log("Logged out");
     } catch (error) {
       console.error('Error signing out:', error);
     }
@@ -136,7 +135,7 @@ const Navbar: React.FC<NavbarProps> = ({
           </nav>
        
       </header>
-      {/* Show recent searches only if the input is focused */}
+     
       {isInputFocused && (
             <div className='absolute bg-gray-100 text-base text-gray-600 divide-y w-full z-10  top-1 md:mt-16 p-2 shadow-lg rounded-lg'>
               {recentSearches.filter(el => el !== "").slice(-6).map((el, index) => (

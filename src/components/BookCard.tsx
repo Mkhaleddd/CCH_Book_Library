@@ -25,16 +25,13 @@ const BookCard: FC<BookCardProps> = ({ book, isFavorite = false, setIsFavourite,
     event.stopPropagation(); // Prevent triggering the book click event
     const newIsFavorite = !isFavorite;
     setIsFavourite(newIsFavorite);
-    console.log("action", newIsFavorite);
     if (dispatch) {
       if (newIsFavorite) {
         dispatch({ type: 'ADD_TO_FAVORITES', payload: book });
         successToast('The book is added to Favourites');
-        console.log("Added to favorites");
       } else {
         dispatch({ type: 'REMOVE_FROM_FAVORITES', payload: book.id });
         successToast('The book is removed from Favourites');
-        console.log("Removed from favorites");
       }
     }
   };

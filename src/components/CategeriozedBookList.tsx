@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { ActionTypes, Book } from '../Reducers/CartReducer';
 import { filterCategories, sortBooks, SortCriteria } from '../utils';
 import BookCarousel from './BookCarousel';
@@ -7,7 +7,7 @@ import {FaSortUp} from "react-icons/fa";
 interface CategeriozedBookListProps {
   categories: string[];
   filtered: Book[];
-  setFiltered: React.Dispatch<React.SetStateAction<Book[] | never[]>>;
+  setFiltered: React.Dispatch<React.SetStateAction<Book[]>>;
   books: Book[];
   isFavorite: boolean;
   setIsFavourite: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,19 +16,20 @@ interface CategeriozedBookListProps {
 
 const CategeriozedBookList: FC<CategeriozedBookListProps> = ({ categories, filtered, setFiltered, books, isFavorite, setIsFavourite,dispatch }) => {
   const [selected,setSelected]=useState<null | string>(null)
-  const handleSort = (filtered: Book[], criteria: SortCriteria) => {
-    const sortedBooks = sortBooks(filtered, criteria);
+   const sortedBooks = useMemo(() => {
+    return sortBooks(filtered, SortCriteria.TITLE_ASC);
+  }, [filtered]);
+
+  const handleSort = () => {
     setFiltered(sortedBooks);
   };
-
-
   return (
     <>
       <section className='bg-gray-100 p-4 w-3/5 overflow-hidden mx-auto my-4 rounded-md relative'>
         <div className="flex justify-between items-center mb-4">
           <span className='text-black text-2xl md:text-4xl font-semibold'>Categories</span>
           <button className='text-blue-600 bg-blue-100 hover:bg-blue-700 hover:text-white text-sm md:text-base px-3 py-1 md:px-4 md:py-2 rounded-lg'
-           onClick={()=>handleSort(filtered,SortCriteria.TITLE_ASC)}
+           onClick={()=>handleSort()}
           >
             <FaSortUp />
           </button>

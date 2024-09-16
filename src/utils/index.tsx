@@ -28,7 +28,6 @@ import {toast} from "react-toastify";
           const filteredArr = books.filter(book => {
             return book.volumeInfo?.categories?.includes(val);
           });
-              console.log(filteredArr)
           setFiltered(filteredArr)
           
           }
